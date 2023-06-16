@@ -7,6 +7,7 @@ import ru.chervenko.EnsetKB.models.Problem;
 import ru.chervenko.EnsetKB.repositories.ProblemRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -21,5 +22,30 @@ public class ProblemService {
     public List<Problem> findAll(){
         return problemRepository.findAll();
     }
+
+    public Optional<Problem> findById (int id) {
+        return problemRepository.findById(id);
+    }
+
+    public List<Problem> findByName(String name){
+        return problemRepository.findByName(name);
+    }
+
+    @Transactional
+    public void save(Problem problem){
+        problemRepository.save(problem);
+    }
+
+    @Transactional
+    public void update(int id, Problem updatedProblem) {
+        updatedProblem.setId(id);
+        problemRepository.save(updatedProblem);
+    }
+
+    @Transactional
+    public void delete(int id){
+        problemRepository.deleteById(id);
+    }
+
 
 }
