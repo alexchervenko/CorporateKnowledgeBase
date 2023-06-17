@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem, Integer> {
-
     List<Problem> findByName(String name);
 }

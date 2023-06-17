@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<div th:each="problem : ${problems}">
-    <a th:href="@{/problems/{id}(id=${problem.getId()})}"
-        th:text="${problem.getName()}"></a>
+<div class="container">
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+
+            <div class="form">
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Опишите проблему..." aria-label="Search" aria-describedby="search-addon" />
+                    <button type="button" class="btn btn-outline-primary">Искать</button>
+                </div>
+            </div>
+
+
+            <div class="problem-list">
+                <div th:each="problem : ${problems}">
+                    <a th:href="@{/problems/{id}(id=${problem.getId()})}"
+                       th:text="${problem.getName()}"></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
 </body>
 </html>
