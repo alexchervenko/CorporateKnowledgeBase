@@ -3,25 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/edit.css">
+
 </head>
 <body>
 <div class="container">
-    <form th:method="PATCH" th:action="@{/problems/{id}/edit(id=${problem.getId()})}"
-    th:object="${problem}">
-        <label for="name">Введите название: </label>
-        <input class="form-control" type="text" th:field="*{name}" id="name"/>
-        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-        <br>
-        <label for="description">Введите описание: </label>
-        <input class="form-control" type="text" th:field="*{description}" id="description"/>
-        <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description Error</div>
-        <br>
-        <label for="solution">Введите решение: </label>
-        <input class="form-control" type="text" th:field="*{solution}" id="solution"/>
-        <div style="color:red" th:if="${#fields.hasErrors('solution')}" th:errors="*{solution}">solution Error</div>
-        <br>
-    </form>
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+            <div class="form">
+                <form th:method="PATCH" th:action="@{/problems/{id}/edit(id=${problem.getId()})}"
+                      th:object="${problem}">
+                    <label for="name">Введите название: </label>
+                    <input class="form-control" type="text" th:field="*{name}" id="name"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                    <br>
+                    <label for="description">Введите описание: </label>
+                    <textarea class="form-control" type="text" th:field="*{description}" id="description" rows="7"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                        description Error
+                    </div>
+                    <br>
+                    <input class="btn btn-outline-primary" type="submit" value="Сохранить">
+                    <a href="/problems" class="btn btn-outline-secondary" role="button" aria-pressed="true">На главную</a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

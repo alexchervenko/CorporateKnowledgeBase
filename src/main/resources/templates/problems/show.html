@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Full info</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/show.css">
 </head>
 <body>
 <div class="container">
-    <div class="panel panel-default .align-items-center">
-        <h2 th:text="${problem.get().getName()}">Value</h2>
-        <p>
-        <h4>Описание:</h4>
-        <p th:text="${problem.get().getDescription()}">VALUE</p>
-        <h4>Решение:</h4>
-        <p th:text="${problem.get().getSolution()}">VALUE</p>
-        <h5>Категории:</h5>
-        <p th:text="${problem.get().getCategory()}">VALUE</p>
-        <h5>Полезные ссылки:</h5>
-        <p th:text="${problem.get().getLinks()}">VALUE</p>
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+
+            <div class="panel panel-default .align-items-center">
+                <h2 th:text="${problem.getName()}">Value</h2>
+                <p>
+                <h4>Описание:</h4>
+                <p th:text="${problem.getDescription()}">VALUE</p>
+            </div>
+            <a href="/problems" class="btn btn-outline-primary" role="button" aria-pressed="true">На главную</a>
+            <a th:href="@{/problems/{id}/edit(id=${problem.getId()})}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Редактировать</a>
+        </div>
     </div>
 </div>
 

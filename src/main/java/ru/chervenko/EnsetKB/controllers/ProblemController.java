@@ -33,11 +33,16 @@ public class ProblemController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id,
                        Model model) {
-        model.addAttribute("problem", problemService.findById(id));
-        return "problems/show";
+        if (problemService.findById(id).isPresent()) {
+            model.addAttribute("problem", problemService.findById(id).get());
+            return "problems/show";
+        } else {
+            return "problems/error";
+        }
     }
+
     @GetMapping("/new")
-    public String newProblem(@ModelAttribute("problem") @Valid ProblemDTO problemDTO){
+    public String newProblem(@ModelAttribute("problem") @Valid ProblemDTO problemDTO) {
         return "problems/new";
     }
 
@@ -48,10 +53,16 @@ public class ProblemController {
         problemService.save(convertToProblem(problemDTO));
         return "redirect:/problems";
     }
+
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("problem", problemService.findById(id));
-        return "problems/edit";
+    public String edit(@PathVariable("id") int id,
+                       Model model) {
+        if (problemService.findById(id).isPresent()) {
+            model.addAttribute("problem", problemService.findById(id).get());
+            return "problems/edit";
+        } else {
+            return "problems/error";
+        }
     }
 
     @PatchMapping("/{id}/edit")
@@ -69,7 +80,7 @@ public class ProblemController {
         return "redirect:/problems";
     }
 
-    private Problem convertToProblem(ProblemDTO problemDTO){
+    private Problem convertToProblem(ProblemDTO problemDTO) {
         return modelMapper.map(problemDTO, Problem.class);
     }
 

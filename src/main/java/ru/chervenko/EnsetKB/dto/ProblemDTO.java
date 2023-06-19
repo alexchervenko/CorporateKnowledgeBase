@@ -6,7 +6,6 @@ public class ProblemDTO {
     private int id;
     private String name;
     private String description;
-    private String solution;
 
     public int getId() {
         return id;
@@ -30,13 +29,5 @@ public class ProblemDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getSolution() {
-        return solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
     }
 }
