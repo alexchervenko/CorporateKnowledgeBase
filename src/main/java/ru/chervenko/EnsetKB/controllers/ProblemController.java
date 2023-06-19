@@ -18,7 +18,8 @@ public class ProblemController {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ProblemController(ProblemService problemService, ModelMapper modelMapper) {
+    public ProblemController(ProblemService problemService,
+                             ModelMapper modelMapper) {
         this.problemService = problemService;
         this.modelMapper = modelMapper;
     }
@@ -29,8 +30,9 @@ public class ProblemController {
         return "problems/index";
     }
 
-    @GetMapping("/id")
-    public String show(@PathVariable("id") int id, Model model) {
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id,
+                       Model model) {
         model.addAttribute("problem", problemService.findById(id));
         return "problems/show";
     }
@@ -48,7 +50,7 @@ public class ProblemController {
     }
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("book", problemService.findById(id));
+        model.addAttribute("problem", problemService.findById(id));
         return "problems/edit";
     }
 
