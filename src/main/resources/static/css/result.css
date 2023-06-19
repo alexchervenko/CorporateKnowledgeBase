@@ -13,3 +13,7 @@
 .problem-list{
     padding-top: 20px;
 }
+
+.float-main-page-btn{
+    float:right;
+}

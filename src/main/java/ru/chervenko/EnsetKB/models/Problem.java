@@ -20,7 +20,8 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(String name, String description) {
+    public Problem(String name,
+                   String description) {
         this.name = name;
         this.description = description;
     }

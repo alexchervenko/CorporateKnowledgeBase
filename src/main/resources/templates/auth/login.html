@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-12 col-md-3 col-lg-2">
+
+            <div th:if="${param.error}">
+              Invalid username and password.</div>
+            <div th:if="${param.logout}">
+              You have been logged out.</div>
+
+            <form th:action="@{/auth/login}" method="POST">
+                <h3>Вход</h3>
+                <br>
+                <div class="mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="Логин" id="loginLabel">
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" id="passLabel">
+                </div>
+                <button type="submit" class="btn btn-primary">Вход</button>
+                <a class="btn btn-outline-primary" href="/auth/register">Регистрация</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

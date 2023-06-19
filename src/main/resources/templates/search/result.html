@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/result.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+
+            <div class="problem-list">
+                <div th:each="problem : ${problems}">
+                    <a th:href="@{/problems/{id}(id=${problem.getId()})}"
+                       th:text="${problem.getName()}"></a>
+                </div>
+            </div>
+            <br>
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <th:block
+                            th:if="${totalPages > 0}"
+                            th:each="pageNumber : ${pageNumbers}">
+
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/search(request=${request}, size=${problemListPageSize}, page=${pageNumber})}"
+                                                 th:text="${pageNumber}"
+                                                 th:classappend="${pageNumber==currentPageNumber} ? disabled"></a></li>
+                    </th:block>
+                </ul>
+            </nav>
+            <a href="/problems" class="btn btn-outline-primary float-main-page-btn" role="button" aria-pressed="true">На главную</a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

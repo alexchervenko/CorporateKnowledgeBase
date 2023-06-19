@@ -1,7 +1,5 @@
 package ru.chervenko.EnsetKB.dto;
 
-import jakarta.persistence.Column;
-
 public class ProblemDTO {
     private int id;
     private String name;

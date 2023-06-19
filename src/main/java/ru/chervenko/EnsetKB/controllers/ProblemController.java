@@ -3,6 +3,7 @@ package ru.chervenko.EnsetKB.controllers;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,8 +26,11 @@ public class ProblemController {
     }
 
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("problems", problemService.findAll());
+    public String index(@RequestParam(name = "page", defaultValue = "0") int page,
+                        @RequestParam(name = "size", defaultValue = "5") int size,
+                        Model model) {
+//        model.addAttribute("problems", problemService.findAll());
+        model.addAttribute("problems", problemService.findAllByPage(PageRequest.of(page, size)));
         return "problems/index";
     }
 
@@ -66,12 +70,12 @@ public class ProblemController {
     }
 
     @PatchMapping("/{id}/edit")
-    public String update(@ModelAttribute("problem") ProblemDTO problemDTO,
+    public String update(@ModelAttribute("problem") @Valid ProblemDTO problemDTO,
                          BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) return "problems/edit";
         problemService.update(id, convertToProblem(problemDTO));
-        return "redirect:/problems";
+        return "redirect:/problems/{id}";
     }
 
     @DeleteMapping("/{id}")

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
-    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
@@ -14,12 +14,18 @@
         <div class="col-md-6">
 
             <div class="form">
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Опишите проблему..." aria-label="Search" aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-primary">Искать</button>
-                </div>
+                <form th:method="GET" th:action="@{/search}">
+                    <div class="input-group">
+                        <input type="search" class="form-control rounded" name="request" placeholder="Опишите проблему..."
+                               aria-label="Search" aria-describedby="search-addon"/>
+                        <button type="submit" class="btn btn-outline-primary">Искать</button>
+                    </div>
+                </form>
             </div>
 
+            <div class="button-new">
+                <a href="/problems/new" class="btn btn-primary" role="button" aria-pressed="true">Добавить</a>
+            </div>
 
             <div class="problem-list">
                 <div th:each="problem : ${problems}">
@@ -27,6 +33,11 @@
                        th:text="${problem.getName()}"></a>
                 </div>
             </div>
+            <br>
+            <form th:action="@{/logout}" th:method="POST">
+                <input class="btn btn-outline-dark" type="submit" value="Выход">
+            </form>
+
 
         </div>
 

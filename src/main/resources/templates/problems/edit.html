@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
-    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
     <link rel="stylesheet" href="/css/edit.css">
 
 </head>
@@ -26,8 +26,11 @@
                         description Error
                     </div>
                     <br>
-                    <input class="btn btn-outline-primary" type="submit" value="Сохранить">
+                    <input class="btn btn-outline-success" type="submit" value="Сохранить">
                     <a href="/problems" class="btn btn-outline-secondary" role="button" aria-pressed="true">На главную</a>
+                </form>
+                <form class="button-delete" th:method="DELETE" th:action="@{/problems/{id}(id=${problem.getId()})}">
+                    <input class="btn btn-outline-danger" type="submit" value="Удалить">
                 </form>
             </div>
 

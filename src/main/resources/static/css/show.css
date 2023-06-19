@@ -2,6 +2,10 @@
     height: 100vh;
 }
 
-.form{
-    position: relative;
+.description{
+    white-space: pre-wrap;
+}
+
+.buttons{
+    padding-bottom: 85px;
 }

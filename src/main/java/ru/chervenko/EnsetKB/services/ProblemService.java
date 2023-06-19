@@ -1,6 +1,8 @@
 package ru.chervenko.EnsetKB.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chervenko.EnsetKB.models.Problem;
@@ -21,6 +23,14 @@ public class ProblemService {
 
     public List<Problem> findAll(){
         return problemRepository.findAll();
+    }
+
+    public Page<Problem> findByNameContains(String request, Pageable pageable){
+        return problemRepository.findByNameContainsIgnoreCase(request, pageable);
+    }
+
+    public List<Problem> findAllByPage(Pageable pageable){
+        return problemRepository.findAll(pageable).getContent();
     }
 
     public Optional<Problem> findById (int id) {
