@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
@@ -30,7 +30,7 @@
                     <a href="/problems" class="btn btn-outline-secondary" role="button" aria-pressed="true">На главную</a>
                 </form>
                 <form class="button-delete" th:method="DELETE" th:action="@{/problems/{id}(id=${problem.getId()})}">
-                    <input class="btn btn-outline-danger" type="submit" value="Удалить">
+                    <input sec:authorize="hasRole('ADMIN')" class="btn btn-outline-danger" type="submit" value="Удалить">
                 </form>
             </div>
 

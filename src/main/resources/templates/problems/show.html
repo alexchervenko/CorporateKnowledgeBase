@@ -21,7 +21,7 @@
             </div>
             <div class="buttons">
                 <a href="/problems" class="btn btn-outline-primary" role="button" aria-pressed="true">На главную</a>
-                <a sec:authorize="hasRole('EDITOR')" th:href="@{/problems/{id}/edit(id=${problem.getId()})}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Редактировать</a>
+                <a sec:authorize="hasAnyRole('EDITOR', 'ADMIN')" th:href="@{/problems/{id}/edit(id=${problem.getId()})}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Редактировать</a>
             </div>
         </div>
     </div>
