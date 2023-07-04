@@ -41,7 +41,7 @@ public class ProblemController {
             model.addAttribute("problem", problemService.findById(id).get());
             return "problems/show";
         } else {
-            return "problems/error";
+            return "errors/error-404";
         }
     }
 
@@ -65,7 +65,7 @@ public class ProblemController {
             model.addAttribute("problem", problemService.findById(id).get());
             return "problems/edit";
         } else {
-            return "problems/error";
+            return "errors/error-404";
         }
     }
 
