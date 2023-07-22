@@ -1,4 +1,4 @@
-package ru.chervenko.EnsetKB.controllers;
+package ru.chervenko.EnsetKB.controller;
 
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.chervenko.EnsetKB.dto.PersonDTO;
-import ru.chervenko.EnsetKB.models.Person;
-import ru.chervenko.EnsetKB.services.PersonService;
-import ru.chervenko.EnsetKB.utils.validators.PersonDTOValidator;
+import ru.chervenko.EnsetKB.model.Person;
+import ru.chervenko.EnsetKB.service.PersonService;
+import ru.chervenko.EnsetKB.utils.validator.PersonDTOValidator;
 
 
 @Controller

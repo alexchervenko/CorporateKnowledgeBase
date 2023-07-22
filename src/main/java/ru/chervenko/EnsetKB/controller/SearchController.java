@@ -1,4 +1,4 @@
-package ru.chervenko.EnsetKB.controllers;
+package ru.chervenko.EnsetKB.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.chervenko.EnsetKB.models.Problem;
-import ru.chervenko.EnsetKB.services.ProblemService;
+import ru.chervenko.EnsetKB.model.Problem;
+import ru.chervenko.EnsetKB.service.ProblemService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,15 +30,12 @@ public class SearchController {
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          @RequestParam(name = "size", defaultValue = "10") int size,
                          Model model) {
-//        model.addAttribute("problems", problemService.findByNameContains(request, PageRequest.of(page, amount)));
-
         Page<Problem> problemListPage = problemService.findByNameContains(request, PageRequest.of(page - 1, size));
         model.addAttribute("problems", problemListPage.getContent());
         model.addAttribute("problemListPageSize", problemListPage.getSize());
         model.addAttribute("currentPageNumber", problemListPage.getNumber() + 1);
         model.addAttribute("totalPages", problemListPage.getTotalPages());
         model.addAttribute("request", request);
-
 
         int totalPages = problemListPage.getTotalPages();
         if (totalPages > 0) {
@@ -47,7 +44,6 @@ public class SearchController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-
         return "search/result";
     }
 }

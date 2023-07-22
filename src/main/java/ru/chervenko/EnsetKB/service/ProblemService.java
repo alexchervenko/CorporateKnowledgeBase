@@ -1,12 +1,12 @@
-package ru.chervenko.EnsetKB.services;
+package ru.chervenko.EnsetKB.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.chervenko.EnsetKB.models.Problem;
-import ru.chervenko.EnsetKB.repositories.ProblemRepository;
+import ru.chervenko.EnsetKB.model.Problem;
+import ru.chervenko.EnsetKB.repository.ProblemRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class ProblemService {
         return problemRepository.findAll(pageable).getContent();
     }
 
-    public Optional<Problem> findById (int id) {
+    public Optional<Problem> findById (String id) {
         return problemRepository.findById(id);
     }
 
@@ -47,13 +47,13 @@ public class ProblemService {
     }
 
     @Transactional
-    public void update(int id, Problem updatedProblem) {
+    public void update(String id, Problem updatedProblem) {
         updatedProblem.setId(id);
         problemRepository.save(updatedProblem);
     }
 
     @Transactional
-    public void delete(int id){
+    public void delete(String id){
         problemRepository.deleteById(id);
     }
 

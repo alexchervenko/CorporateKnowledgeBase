@@ -1,4 +1,4 @@
-package ru.chervenko.EnsetKB.controllers;
+package ru.chervenko.EnsetKB.controller;
 
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.chervenko.EnsetKB.dto.ProblemDTO;
-import ru.chervenko.EnsetKB.models.Problem;
-import ru.chervenko.EnsetKB.services.ProblemService;
+import ru.chervenko.EnsetKB.model.Problem;
+import ru.chervenko.EnsetKB.service.ProblemService;
 
 @Controller
 @RequestMapping("/problems")
@@ -29,13 +29,12 @@ public class ProblemController {
     public String index(@RequestParam(name = "page", defaultValue = "0") int page,
                         @RequestParam(name = "size", defaultValue = "5") int size,
                         Model model) {
-//        model.addAttribute("problems", problemService.findAll());
         model.addAttribute("problems", problemService.findAllByPage(PageRequest.of(page, size)));
         return "problems/index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id,
+    public String show(@PathVariable("id") String id,
                        Model model) {
         if (problemService.findById(id).isPresent()) {
             model.addAttribute("problem", problemService.findById(id).get());
@@ -59,7 +58,7 @@ public class ProblemController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") int id,
+    public String edit(@PathVariable("id") String id,
                        Model model) {
         if (problemService.findById(id).isPresent()) {
             model.addAttribute("problem", problemService.findById(id).get());
@@ -72,14 +71,14 @@ public class ProblemController {
     @PatchMapping("/{id}/edit")
     public String update(@ModelAttribute("problem") @Valid ProblemDTO problemDTO,
                          BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+                         @PathVariable("id") String id) {
         if (bindingResult.hasErrors()) return "problems/edit";
         problemService.update(id, convertToProblem(problemDTO));
         return "redirect:/problems/{id}";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") String id) {
         problemService.delete(id);
         return "redirect:/problems";
     }

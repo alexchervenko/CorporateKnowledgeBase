@@ -1,20 +1,11 @@
-package ru.chervenko.EnsetKB.models;
+package ru.chervenko.EnsetKB.model;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 
-@Entity
-@Table(name = "problem")
 public class Problem {
-
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "name")
+    private String id;
     private String name;
-
-    @Column(name = "description")
     private String description;
 
     public Problem() {
@@ -26,11 +17,11 @@ public class Problem {
         this.description = description;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

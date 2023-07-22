@@ -1,4 +1,4 @@
-package ru.chervenko.EnsetKB.models;
+package ru.chervenko.EnsetKB.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +9,9 @@ import java.util.Collections;
 
 public class SecurityUser implements UserDetails {
     private Person person;
+
+    public SecurityUser() {
+    }
 
     public SecurityUser(Person person) {
         this.person = person;

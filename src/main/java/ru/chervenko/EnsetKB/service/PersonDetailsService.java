@@ -1,11 +1,11 @@
-package ru.chervenko.EnsetKB.services;
+package ru.chervenko.EnsetKB.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.chervenko.EnsetKB.models.SecurityUser;
-import ru.chervenko.EnsetKB.repositories.PersonRepository;
+import ru.chervenko.EnsetKB.model.SecurityUser;
+import ru.chervenko.EnsetKB.repository.PersonRepository;
 
 @Service
 public class PersonDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {

@@ -1,25 +1,14 @@
-package ru.chervenko.EnsetKB.models;
+package ru.chervenko.EnsetKB.model;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 
-@Entity
-@Table(name = "person", schema = "security")
 public class Person {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "username")
+    private String id;
     private String username;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "role")
     private String role;
-
 
     public Person() {
     }
@@ -30,11 +19,11 @@ public class Person {
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,11 +1,11 @@
-package ru.chervenko.EnsetKB.utils.validators;
+package ru.chervenko.EnsetKB.utils.validator;
 
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.chervenko.EnsetKB.dto.PersonDTO;
-import ru.chervenko.EnsetKB.services.PersonService;
+import ru.chervenko.EnsetKB.service.PersonService;
 
 @Component
 public class PersonDTOValidator implements Validator {

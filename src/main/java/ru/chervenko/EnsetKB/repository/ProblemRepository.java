@@ -1,15 +1,14 @@
-package ru.chervenko.EnsetKB.repositories;
+package ru.chervenko.EnsetKB.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import ru.chervenko.EnsetKB.models.Problem;
+import ru.chervenko.EnsetKB.model.Problem;
 
 import java.util.List;
-
 @Repository
-public interface ProblemRepository extends JpaRepository<Problem, Integer> {
+public interface ProblemRepository extends MongoRepository<Problem, String> {
     List<Problem> findByName(String name);
 
     Page<Problem> findByNameContainsIgnoreCase(String request, Pageable pageable);
